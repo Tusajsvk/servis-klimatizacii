@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="sk" data-theme-auto>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KlimaServis – evidencia servisu</title>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0f766e"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="KlimaServis">
+<style>
+:root{--bg:#f4f6f8;--c:#fff;--t:#0f172a;--m:#64748b;--b:#d9e0e8;--p:#0f766e;--pt:#fff;--w:#b45309;--d:#b91c1c;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--c:#111c2e;--t:#e2e8f0;--m:#94a3b8;--b:#22314a;--p:#2dd4bf;--pt:#04201c;--w:#fbbf24;--d:#f87171;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1220;--c:#111c2e;--t:#e2e8f0;--m:#94a3b8;--b:#22314a;--p:#2dd4bf;--pt:#04201c;--w:#fbbf24;--d:#f87171;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--t);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+#root{max-width:960px;margin:0 auto;padding:12px}
+.card{background:var(--c);border:1px solid var(--b);border-radius:14px;padding:12px;margin:10px 0}
+.nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.btn{border:1px solid var(--b);background:var(--c);color:var(--t);border-radius:10px;padding:8px 12px;font:inherit;cursor:pointer;white-space:nowrap}
+.btn.p{background:var(--p);color:var(--pt);border-color:var(--p)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.fl{display:flex;flex-direction:column;font-size:12px;color:var(--m);gap:3px}
+.fl.r{flex-direction:row;align-items:center;font-size:14px;color:var(--t)}
+input,select,textarea{font:inherit;font-size:14px;padding:7px 8px;border:1px solid var(--b);border-radius:8px;background:var(--bg);color:var(--t);width:100%}
+input[type=checkbox]{width:auto}
+.m{color:var(--m)}.w{color:var(--w)}.d{color:var(--d)}.ok{color:var(--p)}
+.bd{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;border:1px solid currentColor;margin:2px 4px 2px 0}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.sp{justify-content:space-between}
+.ck{display:flex;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid var(--b)}
+.sec{font-weight:700;margin-top:12px;color:var(--p)}
+:root{--bg:#eef3f6;--g:linear-gradient(135deg,#0f766e,#0e7490);--soft:#e3f2ef;--sh:0 6px 22px rgba(15,23,42,.08)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--soft:#12303a;--sh:0 6px 22px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--soft:#12303a;--sh:0 6px 22px rgba(0,0,0,.4)}
+#root{padding:14px 14px 104px}
+.hero{background:var(--g);color:#fff;border-radius:22px;padding:18px;box-shadow:var(--sh);display:flex;align-items:center;gap:14px}
+.hero .lg{width:48px;height:48px;border-radius:15px;background:rgba(255,255,255,.2);display:grid;place-items:center;flex:none}
+.hero b{font-size:19px;display:block}.hero small{opacity:.85}
+.card{border-radius:18px;box-shadow:var(--sh)}
+.btn{border-radius:12px;padding:9px 14px;font-weight:600;transition:transform .1s}
+.btn:active{transform:scale(.96)}
+.btn.p{background:var(--g);color:#fff;border:0}
+input,select,textarea{border-radius:12px;padding:9px 11px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--p)}
+.tile{width:44px;height:44px;border-radius:14px;background:var(--soft);color:var(--p);display:grid;place-items:center;float:left;margin-right:12px}
+.li{cursor:pointer}.li::after{content:"";display:block;clear:both}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;justify-content:space-around;gap:4px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:var(--c);border-top:1px solid var(--b);box-shadow:0 -6px 24px rgba(15,23,42,.08)}
+.tabs button{flex:1;max-width:130px;display:flex;flex-direction:column;align-items:center;gap:3px;border:0;background:none;color:var(--m);font:inherit;font-size:11px;font-weight:600;padding:7px 4px;border-radius:14px;cursor:pointer}
+.tabs button.on{color:var(--p);background:var(--soft)}
+:root{--g:linear-gradient(135deg,#0f766e,#0e7490 55%,#6366f1)}
+.k-c{--c2:#6366f1}.k-d{--c2:#0d9488}.k-i{--c2:#f59e0b}.k-s{--c2:#ec4899}.k-f{--c2:#0ea5e9}
+.card{border:0;border-radius:22px}
+.btn{border-radius:99px;padding:9px 16px}
+input,select,textarea{border-radius:14px}
+.hero{border-radius:28px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-30px;top:-34px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.14)}
+.tile{width:46px;height:46px;border-radius:50%;background:color-mix(in srgb,var(--c2) 18%,transparent);color:var(--c2)}
+.tabs{border-radius:26px 26px 0 0;border:0}
+.tabs button{border-radius:20px}
+.tabs button .ti{width:46px;height:30px;border-radius:99px;display:grid;place-items:center;color:var(--c2);background:color-mix(in srgb,var(--c2) 15%,transparent)}
+.tabs button.on{background:none;color:var(--t)}
+.tabs button.on .ti{background:var(--c2);color:#fff}
+.ty{display:flex;gap:10px;align-items:center;padding:10px;border-radius:18px;border:2px solid var(--b);cursor:pointer}
+.ty.on{border-color:var(--c2);background:color-mix(in srgb,var(--c2) 10%,transparent)}
+.ty .ic{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--c2);color:#fff}
+.ty b{display:block}.ty small{color:var(--m);font-size:12px}
+.lock{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:var(--g);padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px))}
+.lockc{background:var(--c);border-radius:28px;padding:26px;width:100%;max-width:340px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;box-shadow:var(--sh)}
+.lockc .lk{width:68px;height:68px;border-radius:50%;background:var(--g);color:#fff;display:grid;place-items:center}
+.lockc input{text-align:center}.lockc .btn{width:100%}
+.fs{border:0;padding:0;margin:0;min-width:0}
+.fs:disabled input,.fs:disabled select,.fs:disabled textarea{background:transparent;border-color:transparent;padding-left:0;color:var(--t);-webkit-text-fill-color:var(--t);opacity:1;appearance:none;-webkit-appearance:none;resize:none}
+@media print{.card{box-shadow:none}.np{display:none!important}body{background:#fff;color:#000}.card{border-color:#999;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+const {useState,useEffect}=React;
+const st=s=>Object.fromEntries(s.split(';').filter(Boolean).map(x=>{const[k,...v]=x.split(':');return[k.trim().replace(/-./g,m=>m[1].toUpperCase()),v.join(':').trim()]}));
+const R=(t,p,...c)=>{if(p){p={...p};if(p.class){p.className=p.class;delete p.class}if(typeof p.style==='string')p.style=st(p.style)}return React.createElement(t,p,...c)};
+const h=htm.bind(R);
+const IC={c:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',d:'<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>',i:'<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/>',s:'<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>',f:'<path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5"/>'};
+Object.assign(IC,{w:'<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/>',t:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',p:'<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>',r:'<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',g:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>'});
+const Icon=({k,n=20})=>h`<svg width=${n} height=${n} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML=${{__html:IC[k]}}/>`;
+
+// ---------- dáta ----------
+const GWP={R32:675,R410A:2088,R134a:1430,R407C:1774,R290:3};
+const RF=Object.keys(GWP);
+const uid=p=>p+Math.random().toString(36).slice(2,8);
+const today=new Date().toISOString().slice(0,10);
+const fd=d=>d?d.split('-').reverse().join('.'):'—';
+const fn=x=>Number(x||0).toLocaleString('sk-SK',{maximumFractionDigits:2});
+const addM=(d,m)=>{const x=new Date(d||today);x.setMonth(x.getMonth()+Number(m||12));return x.toISOString().slice(0,10)};
+const up=(set,o)=>set(l=>l.some(x=>x.id===o.id)?l.map(x=>x.id===o.id?o:x):[...l,o]);
+const rm=(set,id)=>set(l=>l.filter(x=>x.id!==id));
+const useLS=(k,init)=>{const[v,s]=useState(()=>{try{const x=localStorage.getItem(k);return x?JSON.parse(x):init}catch{return init}});useEffect(()=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}},[v]);return[v,s]};
+
+const T={A:[
+['1. Filtre',['Filtre vyčistené alebo vymenené']],
+['2. Výparník',['Znečistenie skontrolované','Lamely narovnané','Výparník dôkladne vyčistený']],
+['3. Vaňa kondenzátu a odvod',['Vaňa kondenzátu vyčistená','Odtok priechodný','Čerpadlo kondenzátu funguje','Plavákový spínač funguje']],
+['4. Ventilátor a motor',['Lopatky ventilátora vyčistené','Vôľa a ložiská skontrolované','Hluk a vibrácie v norme','Odber prúdu|A']],
+['5. Elektrika',['Svorky dotiahnuté','Káble a izolácia bez poškodenia','Riadiaca doska skontrolovaná','Snímače teploty funkčné','Ovládač a komunikácia v poriadku']],
+['6. Vzduchovody a výustky',['Tesnosť spojov skontrolovaná','Izolácia potrubí neporušená','Klapky funkčné','Mriežky a difúzory vyčistené']],
+['7. Chladivový okruh (certifikovaná osoba)',['Izolácia potrubí skontrolovaná','Olejové škvrny / známky úniku nezistené','Orosenie nasávacieho potrubia správne','Tlaky a kontrola úniku v poriadku']],
+['8. Vonkajšia jednotka',['Kondenzátor vyčistený','Ventilátor vonkajšej jednotky v poriadku','Uchytenie a silentbloky skontrolované','Voľný priestor pre prúdenie vzduchu zachovaný']],
+['9. Funkčná skúška',['Režim chladenia funkčný','Režim kúrenia funkčný','Rozdiel teplôt nasávanie/výfuk (ΔT)|°C','Hluk a vibrácie v norme','Odtok kondenzátu pri skúške overený','Žiadne chybové hlásenia na displeji']]],
+B:[
+['1. Napájanie',['Hlavný vypínač a istič','Prúdový chránič funkčný','Poistky na doske','Napätie na svorkách|V']],
+['2. Ovládač a komunikácia',['Batérie, displej, režim, teplota','Komunikačný kábel skontrolovaný']],
+['3. Chybový kód',['Chybový kód prečítaný z pamäte','Porovnaný so servisným manuálom']],
+['4. Kondenzát',['Odvod priechodný a čistý','Vaňa nie je plná','Čerpadlo kondenzátu funguje','Plavákový spínač reaguje']],
+['5. Riadiaca doska',['Spálené súčiastky, zatečenie, oxidácia nezistené','Transformátor a napätie na doske','Výstupy na ventilátor a kompresor']],
+['6. Snímače teploty',['Snímač priestoru|kΩ','Snímač výparníka|kΩ','Vonkajší snímač|kΩ','Káble bez prerušenia a skratu']],
+['7. Ventilátor vnútornej jednotky',['Odpor vinutia|Ω','Kondenzátor kapacita|µF','Ložiská a voľný chod','Signál otáčok 0–10 V']],
+['8. Vonkajšia jednotka',['Ventilátor a kondenzátor chodu','Stýkač a kompresor (odpor, izolácia, odber)|A','Tepelná ochrana kompresora','Čistota kondenzátora']],
+['9. Chladivový okruh (certifikovaná osoba)',['Nízky tlak (LP)|bar','Vysoký tlak (HP)|bar','Podchladenie a prehriatie','Únik chladiva testovaný','Expanzný alebo kapilárny ventil','Filter-sušič a 4-cestný ventil']],
+['10. Prietok vzduchu',['Filtre, výparník, klapky, potrubie bez prekážok']],
+['11. Ochrany',['Presostat vysokého / nízkeho tlaku','Termistory a ochrana fáz']],
+['12. Záver',['Príčina poruchy a vykonaná oprava zapísaná','Funkčná skúška chladenie + kúrenie úspešná']]]};
+const items=k=>T[k].flatMap(([sec,l],s)=>l.map((x,i)=>{const[label,unit]=x.split('|');return{id:k+s+'_'+i,sec,label,unit}}));
+
+const SET0={companyName:'KlimaServis s.r.o.',companyAddress:'Vajnorská 140, 831 04 Bratislava',companyIco:'52345678',companyDic:'2120987654',companyIcDph:'SK2120987654',companyPhone:'+421 905 123 456',companyEmail:'servis@klimaservis.sk',technicianName:'Bc. Martin Novák',technicianCert:'SK-CERT-98214',defaultIntervalMonths:12,capacityRatioMin:50,capacityRatioMax:130};
+const CUST0=[
+{id:'cust_1',type:'firma',name:'TechPark s.r.o.',ico:'48123456',dic:'2023987654',icDph:'SK2023987654',contactPerson:'Ing. Peter Horváth',phone:'+421 901 234 567',email:'horvath@techpark.sk',billingAddress:'Einsteinova 19, 851 01 Bratislava',notes:'Budova B, recepcia, kľúče u SBS.'},
+{id:'cust_2',type:'fyzicka',name:'MUDr. Elena Vargová',ico:'',dic:'',icDph:'',contactPerson:'MUDr. Elena Vargová',phone:'+421 903 876 543',email:'elena.vargova@gmail.com',billingAddress:'Kvetná 24, 040 11 Košice',notes:'Rodinný dom, prístup cez bočnú bránu.'}];
+const DEV0=[
+{id:'dev_1',customerId:'cust_1',manufacturer:'Daikin',model:'3MXM68N9',serialNumber:'DAIKIN-8839201',systemType:'multisplit',coolingCapacityKw:6.8,heatingCapacityKw:8.6,refrigerantType:'R32',factoryChargeKg:1.8,commissioningDate:'2023-05-18',nextInspectionDate:'2026-11-28',status:'v prevádzke',maxLenPerIndoor:25,maxTotalLen:60,maxHeightDiff:15,preChargedLen:30,extraChargeGPerM:20,notes:'Vonkajšia jednotka na streche budovy B.',
+ indoorUnits:[{id:'ind_1',label:'Zasadacia miestnosť 1.p',model:'FTXM25R',capacityKw:2.5,port:'A',pipeLength:12,heightDiff:3},{id:'ind_2',label:'Kancelária riaditeľa',model:'FTXM35R',capacityKw:3.5,port:'B',pipeLength:18,heightDiff:5}]},
+{id:'dev_2',customerId:'cust_2',manufacturer:'Mitsubishi Electric',model:'MSZ-AP35VGK',serialNumber:'MIT-5542109',systemType:'single split',coolingCapacityKw:3.5,heatingCapacityKw:4,refrigerantType:'R32',factoryChargeKg:0.85,commissioningDate:'2024-06-12',nextInspectionDate:'2026-12-10',status:'v prevádzke',maxLenPerIndoor:20,maxTotalLen:30,maxHeightDiff:12,preChargedLen:10,extraChargeGPerM:20,notes:'Inštalácia na severnej stene domu.',
+ indoorUnits:[{id:'ind_3',label:'Obývacia izba',model:'MSZ-AP35VGK',capacityKw:3.5,port:'A',pipeLength:7,heightDiff:2}]}];
+const INSP0=[{id:'insp_1',deviceId:'dev_1',type:'Ročná profilaktika',date:'2025-11-28',technician:'Bc. Martin Novák',reportedSymptom:'Pravidelná ročná servisná prehliadka',errorCode:'',status:'dokončená',useA:true,useB:false,
+ checklistData:Object.fromEntries(items('A').map(i=>[i.id,{checked:true}])),
+ measurements:{lowPressure:'8.2',highPressure:'22.5',subcooling:'5.2',superheat:'4.8',deltaT:'8.5',current:'1.4'},
+ parts:[{id:'p_1',name:'Dezinfekčný sprej na výparník 400 ml',qty:1,unitPrice:14.9}],recommendations:'Zariadenie plne funkčné, bez závad.',nextInspectionDate:'2026-11-28'}];
+
+const newCust=()=>({id:uid('cust_'),type:'firma',name:'',contactPerson:'',phone:'',email:'',billingAddress:'',ico:'',dic:'',icDph:'',notes:''});
+const newDev=cid=>({id:uid('dev_'),customerId:cid||'',manufacturer:'',model:'',serialNumber:'',systemType:'single split',coolingCapacityKw:'',heatingCapacityKw:'',refrigerantType:'R32',factoryChargeKg:'',commissioningDate:today,nextInspectionDate:addM(today,12),status:'v prevádzke',maxLenPerIndoor:25,maxTotalLen:60,maxHeightDiff:15,preChargedLen:30,extraChargeGPerM:20,notes:'',indoorUnits:[]});
+const newInsp=(did,S)=>({id:uid('insp_'),deviceId:did||'',type:'Ročná profilaktika',date:today,technician:S.technicianName,reportedSymptom:'',errorCode:'',status:'rozpracovaná',useA:true,useB:false,checklistData:{},measurements:{},parts:[],recommendations:'',nextInspectionDate:addM(today,S.defaultIntervalMonths)});
+
+// ---------- výpočty ----------
+function metrics(d,I){
+ const u=d.indoorUnits||[],n=Math.max(1,u.length),pre=+d.preChargedLen||0,ex=+d.extraChargeGPerM||20;
+ const tot=u.reduce((s,x)=>s+(+x.pipeLength||0),0);
+ const extra=u.reduce((s,x)=>s+Math.max(0,(+x.pipeLength||0)-pre/n)*ex,0);
+ const kg=(+d.factoryChargeKg||0)+extra/1000;
+ const co2=kg*(GWP[d.refrigerantType]||675)/1000;
+ const ik=u.reduce((s,x)=>s+(+x.capacityKw||0),0);
+ const ratio=+d.coolingCapacityKw>0?ik/d.coolingCapacityKw*100:0;
+ const over=tot>(+d.maxTotalLen||60)||u.some(x=>+x.pipeLength>(+d.maxLenPerIndoor||25)||+x.heightDiff>(+d.maxHeightDiff||15));
+ const last=I.filter(i=>i.deviceId===d.id&&i.status==='dokončená').sort((a,b)=>b.date.localeCompare(a.date))[0];
+ const due=addM(last?last.date:d.commissioningDate,12);
+ return{tot,extra,kg,co2,ik,ratio,over,due,overdue:due<today};
+}
+
+// ---------- UI základ ----------
+const F=({f,v,set})=>{const[k,l,t,o]=f;const val=v[k]??'';
+ const on=e=>set({...v,[k]:t==='check'?e.target.checked:e.target.value});
+ return h`<label class=${'fl'+(t==='check'?' r':'')}><span>${l}</span>${
+  t==='select'?h`<select value=${val} onChange=${on}>${o.map(x=>{const[a,b]=Array.isArray(x)?x:[x,x];return h`<option key=${a} value=${a}>${b}</option>`})}</select>`
+  :t==='area'?h`<textarea rows="2" value=${val} onChange=${on}/>`
+  :t==='check'?h`<input type="checkbox" checked=${!!v[k]} onChange=${on}/>`
+  :h`<input type=${t||'text'} step="any" value=${val} onChange=${on}/>`}</label>`};
+const Form=({fs,v,set})=>h`<div class="g">${fs.map(f=>h`<${F} key=${f[0]} f=${f} v=${v} set=${set}/>`)}</div>`;
+const Bar=({title,back})=>h`<div class="row np"><button class="btn" onClick=${back}>← Späť</button><b style="font-size:17px">${title}</b></div>`;
+const Del=({on})=>{const[s,S]=useState(0);return h`<button class="btn d np" onClick=${()=>s?on():S(1)}>${s?'Naozaj zmazať?':'Zmazať'}</button>`};
+
+const CF=[['type','Typ','select',[['firma','Firma'],['fyzicka','Fyzická osoba']]],['name','Názov / meno'],['contactPerson','Kontaktná osoba'],['phone','Telefón'],['email','E-mail','email'],['billingAddress','Fakturačná adresa'],['ico','IČO'],['dic','DIČ'],['icDph','IČ DPH'],['notes','Poznámky','area']];
+const DF=[['manufacturer','Výrobca'],['model','Model'],['serialNumber','Sériové číslo'],['systemType','Typ systému','select',['single split','multisplit','VRF','kanálová']],['coolingCapacityKw','Chladiaci výkon (kW)','number'],['heatingCapacityKw','Vykurovací výkon (kW)','number'],['refrigerantType','Chladivo','select',RF],['factoryChargeKg','Náplň z výroby (kg)','number'],['commissioningDate','Uvedenie do prevádzky','date'],['nextInspectionDate','Ďalšia revízia','date'],['status','Stav','select',['v prevádzke','odstavené','porucha']],['maxLenPerIndoor','Max. dĺžka / jednotka (m)','number'],['maxTotalLen','Max. celková dĺžka (m)','number'],['maxHeightDiff','Max. prevýšenie (m)','number'],['preChargedLen','Predplnená dĺžka (m)','number'],['extraChargeGPerM','Doplnok (g/m)','number'],['notes','Poznámky','area']];
+const UT=['nástenná','kanálová','kazetová','parapetná'];
+const UF=[['type','Typ jednotky','select',UT],['label','Miestnosť'],['model','Model'],['capacityKw','Výkon (kW)','number'],['pipeLength','Potrubie (m)','number'],['heightDiff','Prevýšenie (m)','number'],['port','Port']];
+const MF=[['lowPressure','Nízky tlak (bar)','number'],['highPressure','Vysoký tlak (bar)','number'],['subcooling','Podchladenie (K)','number'],['superheat','Prehriatie (K)','number'],['deltaT','ΔT (°C)','number'],['current','Odber (A)','number']];
+const SF=[['companyName','Názov firmy'],['companyAddress','Adresa'],['companyIco','IČO'],['companyDic','DIČ'],['companyIcDph','IČ DPH'],['companyPhone','Telefón'],['companyEmail','E-mail'],['technicianName','Technik'],['technicianCert','Číslo certifikátu F-plyny'],['defaultIntervalMonths','Interval revízií (mesiace)','number'],['capacityRatioMin','Min. pomer výkonu (%)','number'],['capacityRatioMax','Max. pomer výkonu (%)','number']];
+
+// ---------- schéma zapojenia ----------
+const Diagram=({d})=>{const u=d.indoorUnits||[];if(!u.length)return null;
+ const H=Math.max(200,u.length*80+40),oy=H/2,mx=+d.maxLenPerIndoor||25,mh=+d.maxHeightDiff||15;
+ return h`<svg viewBox=${'0 0 640 '+H} style="width:100%;height:auto;background:#0f172a;border-radius:12px">
+ <defs><linearGradient id="og" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#0f766e"/><stop offset="100%" stopColor="#13202d"/></linearGradient></defs>
+ <rect x="30" y=${oy-50} width="150" height="100" rx="12" fill="url(#og)" stroke="#2dd4bf"/>
+ <text x="105" y=${oy-4} fill="#fff" fontSize="14" textAnchor="middle" fontWeight="700">Vonkajšia</text>
+ <text x="105" y=${oy+16} fill="#99f6e4" fontSize="12" textAnchor="middle">${d.model}</text>
+ ${u.map((x,i)=>{const y=40+i*80,bad=+x.pipeLength>mx||+x.heightDiff>mh,c=bad?'#f87171':'#2dd4bf';
+  return h`<g key=${x.id}><line x1="180" y1=${oy} x2="440" y2=${y+28} stroke=${c} strokeWidth="3"/><rect x="440" y=${y} width="190" height="56" rx="10" fill="#1e293b" stroke=${c}/><text x="450" y=${y+22} fill="#fff" fontSize="13" fontWeight="700">${x.label||x.model}</text><text x="450" y=${y+42} fill="#94a3b8" fontSize="11">${x.capacityKw} kW · ${x.pipeLength} m · Δh ${x.heightDiff} m</text></g>`})}
+ </svg>`};
+
+// ---------- detaily ----------
+function CustD({id,C,D,onSave,onDel,back,open}){
+ const[c,setC]=useState(()=>C.find(x=>x.id===id)||newCust());
+ const ex=C.some(x=>x.id===c.id),ds=D.filter(d=>d.customerId===c.id);
+ const[ed,setEd]=useState(!ex),cancel=()=>{if(ex){setC(C.find(x=>x.id===id));setEd(false)}else back()};
+ return h`<div><${Bar} title=${c.name||'Nový zákazník'} back=${back}/>
+ <div class="card"><fieldset class="fs" disabled=${!ed}><${Form} fs=${CF} v=${c} set=${setC}/></fieldset>
+  <div class="row" style="margin-top:10px">${ed?h`<button class="btn p np" onClick=${()=>c.name&&onSave(c)}>Uložiť</button><button class="btn np" onClick=${cancel}>Zrušiť</button>`:h`<button class="btn p np" onClick=${()=>setEd(true)}>✎ Upraviť</button>`}${ex&&!ed&&h`<${Del} on=${()=>onDel(c.id)}/>`}</div></div>
+ ${ex&&h`<div class="card"><div class="row sp"><b>Zariadenia</b><button class="btn np" onClick=${()=>open('d',null,c.id)}>+ Zariadenie</button></div>
+  ${ds.map(d=>h`<div key=${d.id} class="ck" style="cursor:pointer" onClick=${()=>open('d',d.id)}>${d.manufacturer} ${d.model} <span class="m">${d.serialNumber}</span></div>`)}</div>`}</div>`}
+
+function DevD({id,extra,C,D,I,S,onSave,onDel,back,open}){
+ const[d,setD]=useState(()=>D.find(x=>x.id===id)||newDev(extra));
+ const ex=D.some(x=>x.id===d.id),m=metrics(d,I);
+ const[ed,setEd]=useState(!ex),cancel=()=>{if(ex){setD(D.find(x=>x.id===id));setEd(false)}else back()};
+ const co=[['','— vyberte zákazníka —'],...C.map(c=>[c.id,c.name])];
+ const setU=(i,u)=>setD({...d,indoorUnits:d.indoorUnits.map((x,j)=>j===i?u:x)});
+ const insps=I.filter(i=>i.deviceId===d.id).sort((a,b)=>b.date.localeCompare(a.date));
+ const rOut=m.ratio&&(m.ratio<S.capacityRatioMin||m.ratio>S.capacityRatioMax);
+ return h`<div><${Bar} title=${(d.manufacturer+' '+d.model).trim()||'Nové zariadenie'} back=${back}/>
+ <div class="card"><fieldset class="fs" disabled=${!ed}><div class="g"><${F} f=${['customerId','Zákazník','select',co]} v=${d} set=${setD}/></div><div style="height:10px"></div><${Form} fs=${DF} v=${d} set=${setD}/></fieldset></div>
+ <div class="card"><div class="row sp"><b>Vnútorné jednotky</b>${ed&&h`<button class="btn np" onClick=${()=>setD({...d,indoorUnits:[...d.indoorUnits,{id:uid('ind_'),type:d.systemType==='kanálová'?'kanálová':'nástenná',label:'',model:'',capacityKw:'',pipeLength:'',heightDiff:'',port:''}]})}>+ Jednotka</button>`}</div>
+ ${d.indoorUnits.map((u,i)=>h`<div key=${u.id} style="margin-top:10px;padding-top:10px;border-top:1px solid var(--b)"><div class="row" style="margin-bottom:8px"><${Mini} t=${u.type||(d.systemType==='kanálová'?'kanálová':'nástenná')}/><b>${u.label||u.model||'Jednotka '+(i+1)}</b></div><fieldset class="fs" disabled=${!ed}><${Form} fs=${UF} v=${u} set=${x=>setU(i,x)}/></fieldset>${ed&&h`<button class="btn d np" style="margin-top:6px" onClick=${()=>setD({...d,indoorUnits:d.indoorUnits.filter((_,j)=>j!==i)})}>Odstrániť jednotku</button>`}</div>`)}</div>
+ <div class="card"><b>Výpočty a kontrola</b>
+  <div class="row" style="margin-top:6px"><span class="bd">Potrubie spolu ${fn(m.tot)} m</span><span class="bd">Náplň ${fn(m.kg)} kg (+${fn(m.extra)} g)</span><span class="bd">CO₂ ekv. ${fn(m.co2)} t</span><span class=${'bd '+(rOut?'w':'')}>Pomer výkonu ${fn(m.ratio)} %</span>
+  ${m.over&&h`<span class="bd d">⚠ Prekročené limity potrubia</span>`}<span class=${'bd '+(m.overdue?'d':'ok')}>Kontrola úniku do ${fd(m.due)}${m.overdue?' – po termíne':''}</span></div></div>
+ <${Dia} d=${d}/>
+ <div class="row np" style="margin:10px 0">${ed?h`<button class="btn p" onClick=${()=>d.customerId&&onSave(d)}>Uložiť zariadenie</button><button class="btn" onClick=${cancel}>Zrušiť</button>`:h`<button class="btn p" onClick=${()=>setEd(true)}>✎ Upraviť</button>`}${ex&&h`<button class="btn" onClick=${()=>open('i',null,d.id)}>+ Nová revízia</button>`}${ex&&!ed&&h`<${Del} on=${()=>onDel(d.id)}/>`}</div>
+ ${!d.customerId&&h`<div class="w np">Pred uložením vyberte zákazníka.</div>`}
+ ${insps.length>0&&h`<div class="card"><b>História revízií</b>${insps.map(i=>h`<div key=${i.id} class="ck" style="cursor:pointer" onClick=${()=>open('i',i.id)}>${fd(i.date)} · ${i.type}${uname(d,i)} <span class=${'bd '+(i.status==='dokončená'?'ok':'w')}>${i.status}</span></div>`)}</div>`}</div>`}
+
+function InspD({id,extra,C,D,I,S,onSave,onDel,back}){
+ const[o,setO]=useState(()=>I.find(x=>x.id===id)||newInsp(extra,S));
+ const ex=I.some(x=>x.id===o.id),dev=D.find(x=>x.id===o.deviceId),cu=dev&&C.find(c=>c.id===dev.customerId);
+ const its=[...(o.useA?items('A'):[]),...(o.useB?items('B'):[])],ck=o.checklistData||{};
+ const setK=(k,p)=>setO({...o,checklistData:{...ck,[k]:{...ck[k],...p}}});
+ const setP=(i,p)=>setO({...o,parts:o.parts.map((x,j)=>j===i?{...x,...p}:x)});
+ const us=(dev&&dev.indoorUnits)||[],mu=us.length>1||(dev&&(dev.systemType==='multisplit'||dev.systemType==='VRF')),uo=[['','Všetky / celý systém'],...us.map(u=>[u.id,(u.label||u.model||'Jednotka')+(u.port?' (port '+u.port+')':'')])],un=us.find(u=>u.id===o.indoorUnitId)||{};
+ const probs=its.filter(i=>(ck[i.id]||{}).problem).length,done=its.filter(i=>(ck[i.id]||{}).checked).length;
+ const sum=o.parts.reduce((s,p)=>s+(+p.qty||0)*(+p.unitPrice||0),0);
+ const[msg,setMsg]=useState(''),[pm,setPm]=useState(false);
+ const dl=async()=>{try{const d=window.claude?await window.claude.use('downloads'):null;if(!d){setMsg('Sťahovanie tu nie je dostupné.');return}await d.save({filename:'protokol-'+o.date+'.html',data:protoHtml(o,dev,cu,S,its,ck,sum)});setMsg('Súbor je uložený – otvorte ho a v okne tlače zvoľte tlačiareň alebo PDF.')}catch(e){setMsg(e&&e.code==='declined'?'':'Uloženie sa nepodarilo.')}};
+ const IF=[['date','Dátum','date'],['technician','Technik'],['status','Stav','select',['rozpracovaná','dokončená']],['reportedSymptom','Nahlásený problém'],['errorCode','Chybový kód'],['nextInspectionDate','Ďalšia revízia','date'],['useA','Šablóna A – profilaktika','check'],['useB','Šablóna B – diagnostika','check']];
+ const dv=[['','— vyberte zariadenie —'],...D.map(d=>[d.id,((C.find(c=>c.id===d.customerId)||{}).name||'')+' – '+d.manufacturer+' '+d.model])];
+ let last='';
+ return h`<div><${Bar} title=${'Servisný protokol'} back=${back}/>
+ <div class="card"><b>${S.companyName}</b><div class="m">${S.companyAddress} · IČO ${S.companyIco} · DIČ ${S.companyDic} · ${S.companyPhone}</div>
+  <div style="margin-top:6px">Protokol zo dňa <b>${fd(o.date)}</b> · technik ${o.technician} (cert. ${S.technicianCert})</div>
+  ${dev&&h`<div>${cu&&cu.name} — ${dev.manufacturer} ${dev.model}, s/n ${dev.serialNumber}, ${dev.refrigerantType}</div>`}${un.id&&h`<div>Vnútorná jednotka: <b>${un.label||un.model}</b> (${un.type||'nástenná'}${un.port?', port '+un.port:''})</div>`}</div>
+ <div class="card"><div class="g"><${F} f=${['deviceId','Zariadenie','select',dv]} v=${o} set=${setO}/>${mu&&h`<${F} f=${['indoorUnitId','Vnútorná jednotka','select',uo]} v=${o} set=${setO}/>`}</div><div class="sec" style="margin:12px 0 6px">Druh zásahu</div><div class="g">${TY.map(([t,n,c,k])=>h`<div key=${t} class=${'ty'+(o.type===t?' on':'')} style=${{'--c2':c}} onClick=${()=>setO({...o,type:t})}><div class="ic"><${Icon} k=${k} n=${22}/></div><div><b>${t}</b><small>${n}</small></div></div>`)}</div><div style="height:10px"></div><${Form} fs=${IF} v=${o} set=${setO}/></div>
+ <div class="card"><div class="row sp"><b>Kontrolný zoznam</b><span class="bd">${done}/${its.length} hotovo${probs?' · ⚠ '+probs:''}</span></div>
+ ${its.filter(i=>!pm||(ck[i.id]||{}).checked).map(i=>{const e=ck[i.id]||{},hd=i.sec!==last;last=i.sec;
+  return h`<div key=${i.id}>${hd&&h`<div class="sec">${i.sec}</div>`}<div class="ck"><input type="checkbox" checked=${!!e.checked} onChange=${x=>setK(i.id,{checked:x.target.checked})}/><span style="flex:1">${i.label}</span>
+  ${i.unit&&h`<input style="width:84px" type="number" step="any" placeholder=${i.unit} value=${e.value||''} onChange=${x=>setK(i.id,{value:x.target.value})}/>`}
+  <button class=${'btn np'+(e.problem?' d':'')} title="Problém" onClick=${()=>setK(i.id,{problem:!e.problem})}><${Icon} k="w" n=${18}/></button></div>${pm?(e.note&&h`<div class="m" style="padding:2px 0 6px">Poznámka: ${e.note}</div>`):((e.problem||e.note)&&h`<input placeholder="Poznámka k položke…" value=${e.note||''} onChange=${x=>setK(i.id,{note:x.target.value})} style="margin:2px 0 6px"/>`)}</div>`})}</div>
+ <div class="card"><b>Merania</b><div style="height:8px"></div><${Form} fs=${MF} v=${o.measurements} set=${m=>setO({...o,measurements:m})}/></div>
+ <div class="card"><div class="row sp"><b>Použitý materiál</b><button class="btn np" onClick=${()=>setO({...o,parts:[...o.parts,{id:uid('p_'),name:'',qty:1,unitPrice:0}]})}>+ Položka</button></div>
+ ${o.parts.map((p,i)=>h`<div key=${p.id} class="row" style="margin-top:6px"><input style="flex:3;min-width:140px" placeholder="Položka" value=${p.name} onChange=${e=>setP(i,{name:e.target.value})}/><input style="width:70px" type="number" placeholder="ks" value=${p.qty} onChange=${e=>setP(i,{qty:e.target.value})}/><input style="width:90px" type="number" step="any" placeholder="€/ks" value=${p.unitPrice} onChange=${e=>setP(i,{unitPrice:e.target.value})}/><button class="btn d np" onClick=${()=>setO({...o,parts:o.parts.filter((_,j)=>j!==i)})}>✕</button></div>`)}
+ <div style="margin-top:8px"><b>Spolu: ${fn(sum)} €</b> <span class="m">(bez DPH)</span></div></div>
+ <div class="card"><${F} f=${['recommendations','Odporúčania / záver','area']} v=${o} set=${setO}/></div>
+ <div class="row np"><button class="btn p" onClick=${()=>o.deviceId&&onSave(o)}>Uložiť</button><button class="btn" onClick=${()=>{setPm(true);setTimeout(()=>{try{window.print()}catch(e){}setTimeout(()=>setPm(false),1500)},350);setMsg(window.claude?'Ak sa okno tlače neotvorí, použite Stiahnuť protokol.':'')}}><${Icon} k="r" n=${16}/> Tlačiť</button>${window.claude&&h`<button class="btn" onClick=${dl}><${Icon} k="g" n=${16}/> Stiahnuť protokol</button>`}${msg&&h`<span class="m np" style="flex-basis:100%;order:9">${msg}</span>`}${ex&&h`<${Del} on=${()=>onDel(o.id)}/>`}</div>
+ ${!o.deviceId&&h`<div class="w np" style="margin-top:6px">Pred uložením vyberte zariadenie.</div>`}</div>`}
+
+const TY=[['Ročná profilaktika','Pravidelná servisná prehliadka','#0d9488','i'],['Diagnostika poruchy','Hľadanie príčiny závady','#e11d48','w'],['Oprava','Výmena dielov, odstránenie závady','#f59e0b','t'],['Inštalácia','Nové zariadenie, uvedenie do chodu','#6366f1','p']];
+const uname=(d,i)=>{const u=d&&(d.indoorUnits||[]).find(x=>x.id===i.indoorUnitId);return u?' · '+(u.label||u.model):''};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function protoHtml(o,dev,cu,S,its,ck,sum){
+ let last='';
+ const rows=its.filter(i=>(ck[i.id]||{}).checked).map(i=>{const e=ck[i.id]||{},hd=i.sec!==last?'<tr><th colspan="3">'+esc(i.sec)+'</th></tr>':'';last=i.sec;return hd+'<tr><td>'+(e.problem?'⚠':e.checked?'✓':'–')+'</td><td>'+esc(i.label)+(e.note?'<br><i>'+esc(e.note)+'</i>':'')+'</td><td>'+(e.value?esc(e.value)+' '+(i.unit||''):'')+'</td></tr>'}).join('');
+ const ms=MF.filter(f=>o.measurements[f[0]]).map(f=>esc(f[1])+': <b>'+esc(o.measurements[f[0]])+'</b>').join(' · ');
+ const un=((dev&&dev.indoorUnits)||[]).find(u=>u.id===o.indoorUnitId);
+ const ps=o.parts.map(p=>'<tr><td colspan="2">'+esc(p.name)+'</td><td>'+esc(p.qty)+' × '+fn(p.unitPrice)+' €</td></tr>').join('');
+ return '<!DOCTYPE html><html lang="sk"><head><meta charset="utf-8"><title>Servisný protokol</title><style>body{font:13px system-ui,sans-serif;max-width:780px;margin:20px auto;padding:0 16px;color:#111}table{width:100%;border-collapse:collapse;margin:8px 0}td,th{border-bottom:1px solid #ddd;padding:4px 6px;text-align:left}th{background:#e3f2ef}h1{font-size:20px;margin:0}.sg{display:flex;gap:40px;margin-top:60px}.sg div{flex:1;border-top:1px solid #000;padding-top:4px}</style></head><body onload="setTimeout(print,400)"><h1>Servisný protokol</h1><p><b>'+esc(S.companyName)+'</b><br>'+esc(S.companyAddress)+' · IČO '+esc(S.companyIco)+' · '+esc(S.companyPhone)+'</p><p>Dátum: <b>'+fd(o.date)+'</b> · Druh: <b>'+esc(o.type)+'</b><br>Technik: '+esc(o.technician)+' (cert. '+esc(S.technicianCert)+')<br>Zákazník: '+esc(cu&&cu.name)+'<br>Zariadenie: '+esc(dev&&dev.manufacturer+' '+dev.model)+', s/n '+esc(dev&&dev.serialNumber)+', '+esc(dev&&dev.refrigerantType)+(un?'<br>Vnútorná jednotka: <b>'+esc(un.label||un.model)+'</b> ('+esc(un.type||'nástenná')+(un.port?', port '+esc(un.port):'')+')':'')+'</p>'+(o.reportedSymptom?'<p>Nahlásený problém: '+esc(o.reportedSymptom)+(o.errorCode?' (kód '+esc(o.errorCode)+')':'')+'</p>':'')+'<table>'+rows+'</table>'+(ms?'<p>'+ms+'</p>':'')+(ps?'<table>'+ps+'</table><p><b>Spolu: '+fn(sum)+' € bez DPH</b></p>':'')+'<p>Odporúčania: '+esc(o.recommendations)+'</p><p>Ďalšia revízia: <b>'+fd(o.nextInspectionDate)+'</b></p><div class="sg"><div>Podpis technika</div><div>Podpis zákazníka</div></div></body></html>'}
+const UG={out:'<rect x="0" y="0" width="130" height="100" rx="14" fill="#e2e8f0" stroke="#94a3b8"/><circle cx="65" cy="50" r="36" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/><path d="M65 50V20M65 50l26 15M65 50l-26 15" stroke="#475569" stroke-width="4" stroke-linecap="round"/><circle cx="65" cy="50" r="6" fill="#475569"/><path d="M12 14h8M12 22h8M12 30h8M12 38h8" stroke="#94a3b8" stroke-width="2"/><rect x="14" y="100" width="22" height="6" fill="#64748b"/><rect x="94" y="100" width="22" height="6" fill="#64748b"/>',
+'nástenná':'<rect x="0" y="4" width="120" height="36" rx="10" fill="#f1f5f9" stroke="#94a3b8"/><rect x="8" y="29" width="104" height="6" rx="3" fill="#cbd5e1"/><circle cx="104" cy="15" r="3" fill="#2dd4bf"/>',
+'kanálová':'<path d="M0 16h8M0 32h8M112 16h8M112 32h8" stroke="#64748b" stroke-width="2"/><rect x="8" y="6" width="104" height="36" rx="4" fill="#cbd5e1" stroke="#64748b"/><rect x="14" y="12" width="92" height="24" rx="2" fill="#94a3b8" opacity=".5"/><path d="M30 18v12M45 18v12M60 18v12M75 18v12M90 18v12" stroke="#475569"/>',
+'kazetová':'<rect x="32" y="0" width="56" height="48" rx="8" fill="#f1f5f9" stroke="#94a3b8"/><rect x="40" y="8" width="40" height="32" rx="5" fill="#cbd5e1"/><circle cx="60" cy="24" r="8" fill="#94a3b8"/><path d="M44 12h32M44 36h32" stroke="#64748b" stroke-width="2"/>',
+'parapetná':'<rect x="8" y="8" width="104" height="34" rx="6" fill="#f1f5f9" stroke="#94a3b8"/><path d="M18 16h84M18 22h84" stroke="#94a3b8" stroke-width="2"/><rect x="14" y="42" width="10" height="5" fill="#64748b"/><rect x="96" y="42" width="10" height="5" fill="#64748b"/><circle cx="100" cy="32" r="3" fill="#2dd4bf"/>'};
+const Mini=({t,w=64})=>h`<svg viewBox="0 0 120 48" width=${w} height=${w*0.4} style="flex:none;background:#0f172a;border-radius:10px;padding:4px" dangerouslySetInnerHTML=${{__html:UG[t]||UG['nástenná']}}/>`;
+const Dia=({d})=>{const u=d.indoorUnits||[],n=Math.max(1,u.length),H=Math.max(230,n*84+70),oy=H/2,mx=+d.maxLenPerIndoor||25,mh=+d.maxHeightDiff||15,dt=d.systemType==='kanálová'?'kanálová':'nástenná';
+ return h`<svg viewBox=${'0 0 680 '+H} style="width:100%;height:auto;background:#0f172a;border-radius:20px">
+ <text x="20" y="24" fill="#94a3b8" fontSize="12">Náhľad · ${d.systemType} · ${d.refrigerantType}</text>
+ <g transform=${'translate(24 '+(oy-53)+')'} dangerouslySetInnerHTML=${{__html:UG.out}}/>
+ <text x="89" y=${oy+76} fill="#99f6e4" fontSize="12" textAnchor="middle">Vonkajšia jednotka</text>
+ ${u.map((x,i)=>{const y=40+i*84,yc=y+24,t=x.type||dt,e=260+(t==='kazetová'?30:0),bad=+x.pipeLength>mx||+x.heightDiff>mh,gc=bad?'#f87171':'#38bdf8',lc=bad?'#fca5a5':'#fb923c';
+ return h`<g key=${x.id}><path d=${'M154 '+(oy-8)+'H185V'+(yc-5)+'H'+e} fill="none" stroke=${gc} strokeWidth="3"/><path d=${'M154 '+(oy+8)+'H205V'+(yc+5)+'H'+e} fill="none" stroke=${lc} strokeWidth="2"/>
+ <g transform=${'translate(260 '+y+')'} dangerouslySetInnerHTML=${{__html:UG[t]||UG['nástenná']}}/>
+ <text x="395" y=${y+16} fill="#fff" fontSize="13" fontWeight="700">${x.label||x.model||'Jednotka'}</text>
+ <text x="395" y=${y+33} fill="#94a3b8" fontSize="11">${t} · ${x.capacityKw||0} kW</text>
+ <text x="395" y=${y+49} fill=${bad?'#f87171':'#94a3b8'} fontSize="11">${x.pipeLength||0} m · Δh ${x.heightDiff||0} m${bad?' ⚠':''}</text></g>`})}
+ ${!u.length&&h`<g><path d=${'M154 '+(oy-8)+'H260'} fill="none" stroke="#38bdf8" strokeWidth="3" strokeDasharray="6 5"/><path d=${'M154 '+(oy+8)+'H260'} fill="none" stroke="#fb923c" strokeWidth="2" strokeDasharray="6 5"/><g transform=${'translate(260 '+(oy-24)+')'} opacity=".45" dangerouslySetInnerHTML=${{__html:UG[dt]}}/><text x="395" y=${oy-2} fill="#94a3b8" fontSize="13">Pridajte vnútornú jednotku</text><text x="395" y=${oy+16} fill="#64748b" fontSize="11">(${dt})</text></g>`}
+ <text x="20" y=${H-12} fill="#38bdf8" fontSize="11">━ plyn</text><text x="75" y=${H-12} fill="#fb923c" fontSize="11">━ kvapalina</text>
+ </svg>`};
+// ---------- aplikácia ----------
+function App({lock}){
+ const[S,setS]=useLS('ks_s',SET0),[C,setC]=useLS('ks_c',CUST0),[D,setD]=useLS('ks_d',DEV0),[I,setI]=useLS('ks_i',INSP0);
+ const[tab,setTab]=useState('c'),[v,setV]=useState(null),[q,setQ]=useState('');
+ const open=(t,id,extra)=>{setV({t,id,extra});window.scrollTo(0,0)},back=()=>setV(null);
+ const dn=d=>d?d.manufacturer+' '+d.model:'—',cn=id=>(C.find(c=>c.id===id)||{}).name||'—';
+ const has=(...a)=>a.join(' ').toLowerCase().includes(q.toLowerCase());
+ const delC=id=>{const ds=D.filter(d=>d.customerId===id).map(d=>d.id);setI(l=>l.filter(i=>!ds.includes(i.deviceId)));setD(l=>l.filter(d=>d.customerId!==id));rm(setC,id);back()};
+ const delD=id=>{setI(l=>l.filter(i=>i.deviceId!==id));rm(setD,id);back()};
+ const saveI=o=>{up(setI,o);if(o.status==='dokončená'&&o.nextInspectionDate)setD(l=>l.map(d=>d.id===o.deviceId?{...d,nextInspectionDate:o.nextInspectionDate}:d));back()};
+ const P={C,D,I,S,back,open};
+ let body;
+ if(v&&v.t==='c')body=h`<${CustD} key=${'c'+v.id} id=${v.id} ...${P} onSave=${o=>{up(setC,o);back()}} onDel=${delC}/>`;
+ else if(v&&v.t==='d')body=h`<${DevD} key=${'d'+v.id} id=${v.id} extra=${v.extra} ...${P} onSave=${o=>{up(setD,o);back()}} onDel=${delD}/>`;
+ else if(v&&v.t==='i')body=h`<${InspD} key=${'i'+v.id} id=${v.id} extra=${v.extra} ...${P} onSave=${saveI} onDel=${id=>{rm(setI,id);back()}}/>`;
+ else if(tab==='c')body=h`<div><div class="row sp"><input style="flex:1" placeholder="Hľadať zákazníka…" value=${q} onChange=${e=>setQ(e.target.value)}/><button class="btn p" onClick=${()=>open('c',null)}>+ Zákazník</button></div>
+  ${C.filter(c=>has(c.name,c.phone,c.email,c.contactPerson)).map(c=>h`<div key=${c.id} class="card li" onClick=${()=>open('c',c.id)}><div class="tile k-c"><${Icon} k="c" n=${22}/></div><b>${c.name}</b> <span class="bd m">${c.type==='firma'?'firma':'FO'}</span><div class="m">${c.contactPerson} · ${c.phone} · ${c.email}</div><div class="m">Zariadení: ${D.filter(d=>d.customerId===c.id).length}</div></div>`)}</div>`;
+ else if(tab==='d')body=h`<div><div class="row sp"><input style="flex:1" placeholder="Hľadať zariadenie…" value=${q} onChange=${e=>setQ(e.target.value)}/><button class="btn p" onClick=${()=>open('d',null)}>+ Zariadenie</button></div>
+  ${D.filter(d=>has(d.manufacturer,d.model,d.serialNumber,cn(d.customerId))).map(d=>{const m=metrics(d,I);return h`<div key=${d.id} class="card li" onClick=${()=>open('d',d.id)}><div class="tile k-d"><${Icon} k="d" n=${22}/></div><b>${dn(d)}</b> <span class="m">${d.serialNumber}</span><div class="m">${cn(d.customerId)} · ${d.refrigerantType} · ${fn(d.coolingCapacityKw)} kW</div><div class="row" style="margin:6px 0 2px">${(d.indoorUnits||[]).slice(0,4).map(u=>h`<${Mini} key=${u.id} w=${48} t=${u.type||(d.systemType==='kanálová'?'kanálová':'nástenná')}/>`)}</div>
+   <span class="bd">Ďalšia revízia ${fd(d.nextInspectionDate)}</span>${m.over&&h`<span class="bd d">⚠ limity</span>`}${m.overdue&&h`<span class="bd d">Kontrola úniku po termíne</span>`}</div>`})}</div>`;
+ else if(tab==='i')body=h`<div><div class="row sp"><input style="flex:1" placeholder="Hľadať revíziu…" value=${q} onChange=${e=>setQ(e.target.value)}/><button class="btn p" disabled=${!D.length} onClick=${()=>open('i',null,D[0]&&D[0].id)}>+ Revízia</button></div>
+  ${[...I].sort((a,b)=>b.date.localeCompare(a.date)).filter(i=>has(i.type,dn(D.find(d=>d.id===i.deviceId)),i.date)).map(i=>{const dv=D.find(d=>d.id===i.deviceId);return h`<div key=${i.id} class="card li" onClick=${()=>open('i',i.id)}><div class="tile k-i"><${Icon} k="i" n=${22}/></div><b>${i.type}</b> <span class=${'bd '+(i.status==='dokončená'?'ok':'w')}>${i.status}</span><div class="m">${fd(i.date)} · ${dn(dv)} · ${dv&&cn(dv.customerId)}${uname(dv,i)}</div></div>`})}</div>`;
+ else body=h`<div><div class="card"><${Form} fs=${SF} v=${S} set=${setS}/></div>
+  <button class="btn" onClick=${lock}><${Icon} k="l" n=${16}/> Zamknúť aplikáciu</button> <button class="btn d" onClick=${()=>{setS(SET0);setC(CUST0);setD(DEV0);setI(INSP0)}}>Obnoviť ukážkové dáta</button><div class="m" style="margin-top:8px">Dáta sa ukladajú v tomto prehliadači.</div></div>`;
+ const nav=[['c','Zákazníci'],['d','Zariadenia'],['i','Revízie'],['s','Nastavenia']];
+ return h`<div><div class="hero np"><div class="lg"><${Icon} k="f" n=${26}/></div><div><b>${S.companyName}</b><small>Evidencia servisu klimatizácií</small></div></div>
+ <div style="margin-top:10px">${body}</div><div class="tabs np">${nav.map(([k,l])=>h`<button key=${k} class=${'k-'+k+((v?v.t:tab)===k?' on':'')} onClick=${()=>{setTab(k);setV(null);setQ('')}}><span class="ti"><${Icon} k=${k} n=${20}/></span>${l}</button>`)}</div></div>`}
+
+const H1='e077da6b762bc3409ddfb08a53030f4be75ec24c53622422c0a08fafeadb5c7b',H2='4387409837386626';
+const c53=s=>{let a=0xdeadbeef,b=0x41c6ce57;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677)}a=Math.imul(a^(a>>>16),2246822507)^Math.imul(b^(b>>>13),3266489909);b=Math.imul(b^(b>>>16),2246822507)^Math.imul(a^(a>>>13),3266489909);return 4294967296*(2097151&b)+(a>>>0)};
+const chk=async p=>{try{if(window.crypto&&crypto.subtle){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')===H1}}catch(e){}return String(c53(p))===H2};
+Object.assign(IC,{l:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'});
+function Lock({children}){
+ const[ok,setOk]=useState(()=>{try{return sessionStorage.getItem('ks_ok')==='1'}catch(e){return false}});
+ const[p,setP]=useState(''),[err,setErr]=useState(false);
+ const go=async()=>{if(await chk(p)){try{sessionStorage.setItem('ks_ok','1')}catch(e){}setP('');setOk(true)}else setErr(true)};
+ const lock=()=>{try{sessionStorage.removeItem('ks_ok')}catch(e){}setOk(false)};
+ if(ok)return children(lock);
+ return h`<div class="lock"><div class="lockc"><div class="lk"><${Icon} k="l" n=${32}/></div><b style="font-size:19px">Aplikácia je zamknutá</b><span class="m">Zadajte heslo</span><input type="password" autoFocus placeholder="Heslo" value=${p} onChange=${e=>{setP(e.target.value);setErr(false)}} onKeyDown=${e=>e.key==='Enter'&&go()}/>${err&&h`<div class="d">Nesprávne heslo</div>`}<button class="btn p" onClick=${go}>Odomknúť</button></div></div>`}
+ReactDOM.createRoot(document.getElementById('root')).render(h`<${Lock}>${lock=>h`<${App} lock=${lock}/>`}<//>`);
+</script>
+<script>if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})</script>
+</body>
+</html>
